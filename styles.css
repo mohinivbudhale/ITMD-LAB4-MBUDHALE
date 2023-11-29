@@ -1,0 +1,234 @@
+body {
+    font-family: 'Times New Roman', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    color: white;
+    font-size: 20px;
+}
+
+#welcomeMessage {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: transparent;
+}
+
+nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.location-buttons button {
+    margin: 10px;
+}
+
+form {
+    display: none;
+}
+
+form.show-search-bar {
+    display: inline-block;
+}
+
+h1 {
+    font-family: 'Times New Roman', sans-serif;
+    color: yellow;
+    padding: 10px;
+    animation: moveHeading 1s infinite alternate;
+}
+
+@keyframes moveHeading {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(10px); /* Adjust the distance of movement */
+    }
+}
+
+.resultContainerGroup {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#resultContainer,
+#resultContainerTomorrow {
+    margin-top: 20px;
+    width: 48%;
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+}
+
+.container {
+    font-family: 'Times New Roman', sans-serif;
+    text-align: center;
+    background-color: transparent;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-image: url('sunset-or-sunrise.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100vw;
+}
+
+.resultPair {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.resultItem {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.resultItem p {
+    margin: 0;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    50% {
+        transform: translateX(5px);
+    }
+    75% {
+        transform: translateX(-3px);
+    }
+    100% {
+        transform: translateX(3px);
+    }
+}
+
+.icon {
+    margin-right: 5px;
+    animation: shake 2.0s ease-in-out infinite;
+}
+
+#locationForm {
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+label {
+    margin-right: 10px;
+    font-weight: bold;
+    font-size: x-large;
+}
+
+button,
+input {
+    font-family: Nunito Sans, sans-serif;
+    font-size: medium;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.data-source {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    z-index: 999;
+}
+
+.data-source a {
+    color: white;
+}
+
+.data-source a:visited {
+    color: white;
+}
+
+#geolocationBtn {
+    margin-right: 10px;
+}
+
+button i,
+label i {
+    margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+    .location-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .location-buttons button {
+        margin: 10px 0;
+        font-size: 16px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    #welcomeMessage {
+        max-width: 100%;
+    }
+
+    .data-source {
+        font-size: 14px;
+        bottom: 10px;
+    }
+
+    .container {
+        font-family: 'Times New Roman', sans-serif;
+        text-align: center;
+        background-color: transparent;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        background-image: url('sunset-or-sunrise.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat;
+        box-sizing: border-box;
+        height: auto;
+        width: auto;
+    }
+
+    .resultContainerGroup {
+        flex-direction: column;
+    }
+
+    #resultContainer,
+    #resultContainerTomorrow {
+        width: 100%;
+    }
+}

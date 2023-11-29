@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <title>Sunrise Sunset Dashboard</title>
+</head>
+
+<body>
+    <div class="container">
+        <nav>
+            <div class="location-buttons">
+                <button id="geolocationBtn"><i class="fas fa-map-marker-alt"></i> My Location</button>
+                <button id="searchLocationBtn" onclick="toggleSearchBar()"><i class="fas fa-map-marker-alt"></i> Search Location</button>
+            </div>
+        </nav>
+        <div id="welcomeMessage">
+            <p>Welcome to Sunrise Sunset Dashboard! Please click on "My Location" to check sunset and sunrise data
+                for your location, or click on "Search Location" to search for specific location data.</p>
+        </div>
+        <div>
+            <h1>Sunrise Sunset Dashboard</h1>
+            <form id="locationForm">
+                <label for="locationInput"><i class="fas fa-search"></i> Search Location:</label>
+                <input type="text" id="locationInput" placeholder="Enter location">
+                <button type="submit"><i class="fas fa-search"></i> Search</button>
+            </form>
+        </div>
+        <div class="resultContainerGroup">
+            <div id="resultContainer">
+            </div>
+            <div id="resultContainerTomorrow">
+            </div>
+        </div>
+        <div class="data-source">
+            Data requested from API: <a href="https://sunrisesunset.io/api/" target="_blank">https://sunrisesunset.io/api/</a>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
