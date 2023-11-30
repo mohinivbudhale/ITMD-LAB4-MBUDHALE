@@ -1,38 +1,52 @@
+
 document.addEventListener("DOMContentLoaded", function () {
+	
     const geolocationBtn = document.getElementById("geolocationBtn");
     const locationForm = document.getElementById("locationForm");
     const resultContainer = document.getElementById("resultContainer");
     const resultContainerTomorrow = document.getElementById("resultContainerTomorrow");
     const searchLocationBtn = document.getElementById("searchLocationBtn");
     const welcomeMessage = document.getElementById("welcomeMessage");
+    const errorMessageElement = document.getElementById("errormessage");
+    const submitBtn = document.getElementById("submitBtn");
 
+	function toggleSearchBar() {
+        var form = document.getElementById('locationForm');
+        form.classList.toggle('show-search-bar');
+    }
     welcomeMessage.style.display = "block";
     resultContainer.style.display = "none";
     resultContainerTomorrow.style.display = "none";
-
+    
     geolocationBtn.addEventListener("click", function () {
-        welcomeMessage.style.display = "none";
+        welcomeMessage.style.display = "none";        
+        getGeolocation();
     });
+    
+    submitBtn.addEventListener("click", function ()
+    {
+		showError("");
+	});
 
     searchLocationBtn.addEventListener("click", function () {
+		console.log('test test');
         welcomeMessage.style.display = "none";
+        showError("");
+        toggleSearchBar();
     });
 
-    geolocationBtn.addEventListener("click", getGeolocation);
+
     locationForm.addEventListener("submit", searchLocation);
-    searchLocationBtn.addEventListener("click", toggleSearchBar);
+    
 
     function getGeolocation() {
         navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
-    }
-
-    function toggleSearchBar() {
-        locationForm.classList.toggle("show-search-bar");
-    }
+    }    
 
     function searchLocation(event) {
         event.preventDefault();
         const locationInput = document.getElementById("locationInput").value;
+        
 
         if (!locationInput.trim()) {
             alert("Please enter a location before searching.");
@@ -44,6 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
         fetch(geocodeApiUrl)
             .then(response => {
                 if (!response.ok) {
+					console.error(`Geocode API request failed with status: ${response.status}`);
                     throw new Error(`Geocode API request failed with status: ${response.status}`);
                 }
                 return response.json();
@@ -61,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
                         fetchSunriseSunsetData(latitude, longitude);
-                        fetchSunriseSunsetDataTommorow(latitude, longitude);
+                        fetchSunriseSunsetDataTomorrow(latitude, longitude);
                     } else {
                         showError("Latitude and longitude not found in the result");
                     }
@@ -80,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const longitude = position.coords.longitude;
 
         fetchSunriseSunsetData(latitude, longitude);
-        fetchSunriseSunsetDataTommorow(latitude, longitude);
+        fetchSunriseSunsetDataTomorrow(latitude, longitude);
     }
 
     function errorCallback(error) {
@@ -99,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function () {
         resultContainerTomorrow.style.display = "block";
     }
 
-    function fetchSunriseSunsetDataTommorow(latitude, longitude) {
+    function fetchSunriseSunsetDataTomorrow(latitude, longitude) {
         const tomorrow = new Date();
         tomorrow.setDate(tomorrow.getDate() + 1);
 
@@ -223,9 +238,15 @@ document.addEventListener("DOMContentLoaded", function () {
             showError("Sunrise and sunset data not available");
         }
     }
+function showError(message) {    
 
-    function showError(message) {
-        resultContainer.innerHTML = `<p style="color: white;">${message}</p>`;        
-        resultContainerTomorrow.innerHTML = `<p style="color: white;">${message}</p>`;
+    if (message) {
+		console.log('it is true');
+        errorMessageElement.innerHTML = `<p style="color: white;">${message}</p>`;
+    } else {
+		console.log('it is false');
+        errorMessageElement.innerHTML = ""; 
     }
+}
+
 });
