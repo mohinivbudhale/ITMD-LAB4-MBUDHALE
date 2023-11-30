@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function showError(message) {
-        resultContainer.innerHTML = `<p style="color: white;">${message}</p>`;
+        resultContainer.innerHTML = `<p style="color: white;">${message}</p>`;        
+        resultContainerTomorrow.innerHTML = `<p style="color: white;">${message}</p>`;
     }
 });
